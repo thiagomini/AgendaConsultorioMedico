@@ -1,0 +1,13 @@
+.env
+\bin
+\obj
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+Generated\ Files/
+
+*.[Cc]ache
