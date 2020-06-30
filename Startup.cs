@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Serialization;
 
 namespace AgendaConsultorioMedico
 {
@@ -39,6 +40,11 @@ namespace AgendaConsultorioMedico
 
             // Injeção do mapeamento de model < - > Dto
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+            // Tratar de JSON em PATCH
+            services.AddControllers().AddNewtonsoftJson(s => {
+                s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            });
     
         }
 

@@ -45,7 +45,7 @@ namespace AgendaConsultorioMedico.Data
 
         public Person GetPersonById(int id)
         {
-            return _context.People.FirstOrDefault();
+            return _context.People.FirstOrDefault(person => person.Id == id);
             
         }
 

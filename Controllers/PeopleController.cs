@@ -3,6 +3,7 @@ using AgendaConsultorioMedico.Data;
 using AgendaConsultorioMedico.Dto;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.JsonPatch;
 
 namespace AgendaConsultorioMedico.Controllers
 {
@@ -20,6 +21,7 @@ namespace AgendaConsultorioMedico.Controllers
 
         }
 
+        // GET /api/<PeopleController>
         [HttpGet]
         public ActionResult<IEnumerable<PersonReadDto>> Get()
         {
@@ -27,6 +29,7 @@ namespace AgendaConsultorioMedico.Controllers
             return Ok(_mapper.Map<IEnumerable<PersonReadDto>>(people));
         }
 
+        // GET /api/<PeopleController>/{id}
         [HttpGet("{id}", Name = "GetPersonById")]
         public ActionResult<PersonReadDto> GetPersonById(int id)
         {
@@ -36,6 +39,67 @@ namespace AgendaConsultorioMedico.Controllers
                 return NotFound();
             }
             return Ok(_mapper.Map<PersonReadDto>(person));
+        }
+
+        // POST /api/<PeopleController>
+        [HttpPost]
+        public ActionResult<PersonReadDto> CreatePerson(PersonCreateDto newPerson)
+        {
+                var personModel = _mapper.Map<Person>(newPerson);
+                _repository.CreatePerson(personModel);
+
+                var personReadDto = _mapper.Map<PersonReadDto>(personModel);
+
+                return CreatedAtRoute(nameof(GetPersonById), new { Id = personModel.Id }, personReadDto);
+        }
+
+        [HttpPut("{id}")]
+        public ActionResult<PersonReadDto> UpdatePerson(int id, [FromBody] PersonUpdateDto updateDto)
+        {
+            var modelFromRepo = _repository.GetPersonById(id);
+
+            if (modelFromRepo == null) return NotFound();
+
+            _mapper.Map(updateDto, modelFromRepo);
+
+            _repository.UpdatePerson(modelFromRepo);
+       
+            return NoContent();
+        }
+
+        // DELETE /api/<PeopleController>/{id}
+        [HttpDelete("{id}")]
+        public ActionResult DeletePerson(int id)
+        {
+            var personModel = _repository.GetPersonById(id);
+
+            if (personModel == null) return NotFound();
+
+            _repository.DeletePerson(personModel);
+
+            return NoContent();
+        }
+
+        // PATCH /api/<PeopleController>/{id}
+        [HttpPatch("{id}")]
+        public ActionResult PatchPerson(int id, JsonPatchDocument<PersonCreateDto> patchDocument)
+        {
+            var modelFromRepo = _repository.GetPersonById(id);
+
+            if (modelFromRepo == null) return NotFound();
+
+            var personToPatch = _mapper.Map<PersonCreateDto>(modelFromRepo);
+
+            // Aplica o PATCH e faz as validações da Model
+            patchDocument.ApplyTo(personToPatch, ModelState);
+
+            if (!TryValidateModel(personToPatch)) return ValidationProblem(ModelState);
+
+            _mapper.Map(personToPatch, modelFromRepo);
+
+            _repository.UpdatePerson(modelFromRepo);
+
+            return NoContent();
         }
     }
 }
