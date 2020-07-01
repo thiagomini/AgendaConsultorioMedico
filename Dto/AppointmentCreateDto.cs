@@ -2,13 +2,10 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using AgendaConsultorioMedico.Data.Annotations;
 
-namespace AgendaConsultorioMedico.Data
+namespace AgendaConsultorioMedico.Dto
 {
-    public class Appointment
+    public class AppointmentCreateDto
     {
-        [Key]
-        public int Id { get; set; }
-
         [Required]
         [DataType(DataType.Date)]
         [ValidDate]
@@ -22,8 +19,8 @@ namespace AgendaConsultorioMedico.Data
         [MaxLength(250)]
         public string Observacao { get; set; } 
 
+        [PositiveNumber]
         [Required]
         public int PersonId { get; set; }
-        public Person Person { get; set; }
     }
 }

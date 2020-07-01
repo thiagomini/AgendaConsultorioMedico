@@ -37,6 +37,7 @@ namespace AgendaConsultorioMedico
 
             // Injeção de dependência das demais classes
             services.AddScoped<IPeopleRepository, SqlPeopleRepository>();
+            services.AddScoped<IAppointmentsRepository, SqlAppointmentsRepository>();
 
             // Injeção do mapeamento de model < - > Dto
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

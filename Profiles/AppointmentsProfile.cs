@@ -8,7 +8,11 @@ namespace AgendaConsultorioMedico.Profiles
     {
        public AppointmentsProfile()
        {
+           // Origem -> Alvo
             CreateMap<Appointment, AppointmentReadDto>();
+            CreateMap<Appointment, AppointmentCreateDto>();
+            CreateMap<AppointmentCreateDto, Appointment>();
+            CreateMap<AppointmentUpdateDto, Appointment>();
        }
     }
 }
