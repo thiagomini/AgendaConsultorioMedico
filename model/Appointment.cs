@@ -24,6 +24,6 @@ namespace AgendaConsultorioMedico.Data
 
         [Required]
         public int PersonId { get; set; }
-        public Person Person { get; set; }
+        public virtual Person Person { get; set; }
     }
 }

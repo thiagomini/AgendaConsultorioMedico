@@ -16,6 +16,6 @@ namespace AgendaConsultorioMedico.Data
         [DataType(DataType.Date)]
         public DateTime DataDeNascimento { get; set; }
 
-        public List<Appointment> Appointments { get; set; }
+        public virtual ICollection<Appointment> Appointments { get; set; }
     }
 }

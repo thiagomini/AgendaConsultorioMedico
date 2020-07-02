@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace AgendaConsultorioMedico.Data
 {
@@ -40,12 +41,16 @@ namespace AgendaConsultorioMedico.Data
 
         public IEnumerable<Person> GetAllPeople()
         {
-            return _context.People.ToList();
+            return _context.People
+                .Include(p => p.Appointments)
+                .ToList();
         }
 
         public Person GetPersonById(int id)
         {
-            return _context.People.FirstOrDefault(person => person.Id == id);
+            return _context.People
+            .Include(p => p.Appointments)
+            .FirstOrDefault(person => person.Id == id);
             
         }
 
