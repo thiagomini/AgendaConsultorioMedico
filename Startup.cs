@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AgendaConsultorioMedico.Business;
 using AgendaConsultorioMedico.Data;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
@@ -38,7 +39,8 @@ namespace AgendaConsultorioMedico
             // Injeção de dependência das demais classes
             services.AddScoped<IPeopleRepository, SqlPeopleRepository>();
             services.AddScoped<IAppointmentsRepository, SqlAppointmentsRepository>();
-
+            services.AddScoped<IAppointmentValidation, EqualTimeAppointmentValidation>();
+            
             // Injeção do mapeamento de model < - > Dto
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

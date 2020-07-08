@@ -4,7 +4,7 @@ using AgendaConsultorioMedico.Data.Annotations;
 
 namespace AgendaConsultorioMedico.Data
 {
-    public class Appointment
+    public class Appointment : IComparable
     {
         [Key]
         public int Id { get; set; }
@@ -16,6 +16,7 @@ namespace AgendaConsultorioMedico.Data
 
         [Required]
         [DataType(DataType.Date)]
+        [LaterDate(nameof(HoraConsultaInicio))]
         [ValidDate]
         public DateTime HoraConsultaFim { get; set; }
 
@@ -25,5 +26,11 @@ namespace AgendaConsultorioMedico.Data
         [Required]
         public int PersonId { get; set; }
         public virtual Person Person { get; set; }
+
+        public int CompareTo(object obj)
+        {
+            Appointment consulta = (Appointment) obj;
+            return DateTime.Compare(this.HoraConsultaInicio, consulta.HoraConsultaInicio);
+        }
     }
 }

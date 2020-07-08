@@ -4,6 +4,7 @@ using AgendaConsultorioMedico.Dto;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.JsonPatch;
+using AgendaConsultorioMedico.Business;
 
 namespace AgendaConsultorioMedico.Controllers
 {
@@ -13,11 +14,13 @@ namespace AgendaConsultorioMedico.Controllers
     {
         private readonly IAppointmentsRepository _repository;
         private readonly IMapper _mapper;
+        private readonly IAppointmentValidation _appointmentValidation;
 
-        public AppointmentsController(IAppointmentsRepository repository, IMapper mapper)
+        public AppointmentsController(IAppointmentsRepository repository, IMapper mapper, IAppointmentValidation appointmentValidation)
         {
             _repository = repository;
             _mapper = mapper;
+            _appointmentValidation = appointmentValidation;
 
         }
 
@@ -47,6 +50,11 @@ namespace AgendaConsultorioMedico.Controllers
         {
                 var AppointmentModel = _mapper.Map<Appointment>(newAppointment);
                 if (!TryValidateModel(AppointmentModel)) return ValidationProblem(ModelState);
+
+                if (!CanAddAppointment(AppointmentModel))
+                {
+                    return ValidationProblem("A data de agendamento solicitada não pôde ser encaixada! Por favor agende para outro horário");
+                } 
                 
                 _repository.CreateAppointment(AppointmentModel);
 
@@ -102,6 +110,12 @@ namespace AgendaConsultorioMedico.Controllers
             _repository.UpdateAppointment(modelFromRepo);
 
             return NoContent();
+        }
+
+        private bool CanAddAppointment(Appointment newAppointment)
+        {
+            var allAppointments = (List<Appointment>) _repository.GetAllAppointments();
+            return _appointmentValidation.CanAddAppointment(newAppointment, allAppointments);
         }
     }
 }

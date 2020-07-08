@@ -14,6 +14,7 @@ namespace AgendaConsultorioMedico.Dto
         [Required]
         [DataType(DataType.Date)]
         [ValidDate]
+        [LaterDate(nameof(HoraConsultaInicio))]
         public DateTime HoraConsultaFim { get; set; }
 
         [MaxLength(250)]
