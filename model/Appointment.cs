@@ -32,5 +32,19 @@ namespace AgendaConsultorioMedico.Data
             Appointment consulta = (Appointment) obj;
             return DateTime.Compare(this.HoraConsultaInicio, consulta.HoraConsultaInicio);
         }
+
+        public Appointment(int id, DateTime horaConsultaInicio, DateTime horaConsultaFim, string observacao, int personId)
+        {
+            this.Id = Id;
+            this.HoraConsultaInicio = horaConsultaInicio;
+            this.HoraConsultaFim = horaConsultaFim;
+            this.Observacao = observacao;
+            this.PersonId = personId;
+        }
+
+        public Appointment()
+        {
+
+        }
     }
 }

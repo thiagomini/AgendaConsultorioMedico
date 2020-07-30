@@ -14,9 +14,9 @@ namespace AgendaConsultorioMedico.Business
             // Ordena a lista de consultas pela Data de Início
             int newAppointmentPosition = allAppointments.IndexOf(appointment);
 
-            var nextAppointment = allAppointments.Count == newAppointmentPosition-1
-                ? allAppointments[newAppointmentPosition + 1]
-                : null ;
+            var nextAppointment = allAppointments.Count == newAppointmentPosition + 1
+                ? null
+                : allAppointments[newAppointmentPosition + 1];
 
             var previousAppointment = newAppointmentPosition == 0
                 ? null
