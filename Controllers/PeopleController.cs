@@ -50,7 +50,7 @@ namespace AgendaConsultorioMedico.Controllers
 
                 var personReadDto = _mapper.Map<PersonReadDto>(personModel);
 
-                return CreatedAtRoute(nameof(GetPersonById), new { Id = personModel.Id }, personReadDto);
+                return Ok(personReadDto);
         }
 
         [HttpPut("{id}")]

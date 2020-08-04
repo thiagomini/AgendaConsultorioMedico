@@ -48,6 +48,7 @@ namespace AgendaConsultorioMedico
             services.AddControllers().AddNewtonsoftJson(s => {
                 s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             });
+
     
         }
 
@@ -63,6 +64,12 @@ namespace AgendaConsultorioMedico
 
             app.UseRouting();
 
+            app.UseCors(UriBuilder => {
+                UriBuilder.WithOrigins("http://localhost:4200")
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+            });
+            
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
