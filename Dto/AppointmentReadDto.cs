@@ -14,5 +14,7 @@ namespace AgendaConsultorioMedico.Dto
         public string Observacao { get; set; } 
 
         public int PersonId { get; set; }
+
+        public PersonReadDto Person { get; set; }
     }
 }

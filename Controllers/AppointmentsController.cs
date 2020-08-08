@@ -28,8 +28,8 @@ namespace AgendaConsultorioMedico.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<AppointmentReadDto>> Get()
         {
-            var people = _repository.GetAllAppointments();
-            return Ok(_mapper.Map<IEnumerable<AppointmentReadDto>>(people));
+            var appointments = _repository.GetAllAppointments();
+            return Ok(_mapper.Map<IEnumerable<AppointmentReadDto>>(appointments));
         }
 
         // GET /api/<AppointmentsController>/{id}

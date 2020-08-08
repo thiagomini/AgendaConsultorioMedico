@@ -17,7 +17,7 @@ namespace AgendaConsultorioMedico.Data.Annotations
         public LaterDateAttribute(string otherProperty) : base(otherProperty)
         {
             this._otherProperty = otherProperty;
-            this.ErrorMessage = "Must be a later Date than " + (this._otherProperty);  
+            this.ErrorMessage = "Deve ser uma data posterior à " + (this._otherProperty);  
         }
 
         //

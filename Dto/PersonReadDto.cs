@@ -11,6 +11,5 @@ namespace AgendaConsultorioMedico.Dto
 
         public DateTime DataDeNascimento { get; set; }
 
-        public List<AppointmentReadDto> Appointments { get; set; }
     }
 }
