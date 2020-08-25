@@ -15,13 +15,14 @@ namespace AgendaConsultorioMedico.Controllers
         private readonly IAppointmentsRepository _repository;
         private readonly IMapper _mapper;
         private readonly IAppointmentValidation _appointmentValidation;
+        private readonly IPeopleRepository _peopleRepository;
 
-        public AppointmentsController(IAppointmentsRepository repository, IMapper mapper, IAppointmentValidation appointmentValidation)
+        public AppointmentsController(IAppointmentsRepository repository, IMapper mapper, IAppointmentValidation appointmentValidation, IPeopleRepository peopleRepository)
         {
             _repository = repository;
             _mapper = mapper;
             _appointmentValidation = appointmentValidation;
-
+            _peopleRepository = peopleRepository;
         }
 
         // GET /api/<AppointmentsController>
@@ -56,6 +57,10 @@ namespace AgendaConsultorioMedico.Controllers
                     return ValidationProblem("A data de agendamento solicitada não pôde ser encaixada! Por favor agende para outro horário");
                 } 
                 
+                var Person = _peopleRepository.GetPersonById(newAppointment.PersonId);
+                if (Person == null) {
+                    return NotFound();
+                }
                 _repository.CreateAppointment(AppointmentModel);
 
                 var AppointmentReadDto = _mapper.Map<AppointmentReadDto>(AppointmentModel);

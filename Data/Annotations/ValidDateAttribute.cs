@@ -12,8 +12,8 @@ namespace AgendaConsultorioMedico.Data.Annotations
 
         public override bool IsValid(object value)
         {
-            DateTime dateValue = Convert.ToDateTime(value);
-            return dateValue != new DateTime();
+            DateTimeOffset dateValue = DateTimeOffset.Parse(value.ToString());
+            return dateValue != new DateTimeOffset();
         }
     }
 }

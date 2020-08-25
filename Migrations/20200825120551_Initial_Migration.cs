@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AgendaConsultorioMedico.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class Initial_Migration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,7 +14,7 @@ namespace AgendaConsultorioMedico.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(maxLength: 150, nullable: false),
-                    DataDeNascimento = table.Column<DateTime>(nullable: false)
+                    DataDeNascimento = table.Column<DateTimeOffset>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -27,8 +27,8 @@ namespace AgendaConsultorioMedico.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    HoraConsultaInicio = table.Column<DateTime>(nullable: false),
-                    HoraConsultaFim = table.Column<DateTime>(nullable: false),
+                    HoraConsultaInicio = table.Column<DateTimeOffset>(nullable: false),
+                    HoraConsultaFim = table.Column<DateTimeOffset>(nullable: false),
                     Observacao = table.Column<string>(maxLength: 250, nullable: true),
                     PersonId = table.Column<int>(nullable: false)
                 },

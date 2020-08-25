@@ -9,7 +9,7 @@ namespace AgendaConsultorioMedico.Dto
 
         public string Nome { get; set; }
 
-        public DateTime DataDeNascimento { get; set; }
+        public DateTimeOffset DataDeNascimento { get; set; }
 
     }
 }

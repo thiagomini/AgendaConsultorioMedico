@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AgendaConsultorioMedico.Migrations
 {
     [DbContext(typeof(AgendaDBContext))]
-    [Migration("20200625115455_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20200825120551_Initial_Migration")]
+    partial class Initial_Migration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,11 +28,11 @@ namespace AgendaConsultorioMedico.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("HoraConsultaFim")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTimeOffset>("HoraConsultaFim")
+                        .HasColumnType("datetimeoffset");
 
-                    b.Property<DateTime>("HoraConsultaInicio")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTimeOffset>("HoraConsultaInicio")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Observacao")
                         .HasColumnType("nvarchar(250)")
@@ -55,8 +55,8 @@ namespace AgendaConsultorioMedico.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("DataDeNascimento")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTimeOffset>("DataDeNascimento")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Nome")
                         .IsRequired()

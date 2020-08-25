@@ -7,9 +7,9 @@ namespace AgendaConsultorioMedico.Dto
 
         public int Id { get; set; }
 
-        public DateTime HoraConsultaInicio { get; set; }
+        public DateTimeOffset HoraConsultaInicio { get; set; }
 
-        public DateTime HoraConsultaFim { get; set; }
+        public DateTimeOffset HoraConsultaFim { get; set; }
 
         public string Observacao { get; set; } 
 

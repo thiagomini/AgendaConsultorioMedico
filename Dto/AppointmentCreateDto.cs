@@ -9,13 +9,13 @@ namespace AgendaConsultorioMedico.Dto
         [Required]
         [DataType(DataType.Date)]
         [ValidDate]
-        public DateTime HoraConsultaInicio { get; set; }
+        public DateTimeOffset HoraConsultaInicio { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
         [ValidDate]
         [LaterDate(nameof(HoraConsultaInicio))]
-        public DateTime HoraConsultaFim { get; set; }
+        public DateTimeOffset HoraConsultaFim { get; set; }
 
         [MaxLength(250)]
         public string Observacao { get; set; } 

@@ -12,13 +12,13 @@ namespace AgendaConsultorioMedico.Data
         [Required]
         [DataType(DataType.Date)]
         [ValidDate]
-        public DateTime HoraConsultaInicio { get; set; }
+        public DateTimeOffset HoraConsultaInicio { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
         [LaterDate(nameof(HoraConsultaInicio))]
         [ValidDate]
-        public DateTime HoraConsultaFim { get; set; }
+        public DateTimeOffset HoraConsultaFim { get; set; }
 
         [MaxLength(250)]
         public string Observacao { get; set; } 
@@ -30,10 +30,10 @@ namespace AgendaConsultorioMedico.Data
         public int CompareTo(object obj)
         {
             Appointment consulta = (Appointment) obj;
-            return DateTime.Compare(this.HoraConsultaInicio, consulta.HoraConsultaInicio);
+            return DateTimeOffset.Compare(this.HoraConsultaInicio, consulta.HoraConsultaInicio);
         }
 
-        public Appointment(int id, DateTime horaConsultaInicio, DateTime horaConsultaFim, string observacao, int personId)
+        public Appointment(int id, DateTimeOffset horaConsultaInicio, DateTimeOffset horaConsultaFim, string observacao, int personId)
         {
             this.Id = Id;
             this.HoraConsultaInicio = horaConsultaInicio;

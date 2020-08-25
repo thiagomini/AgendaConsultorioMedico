@@ -14,7 +14,7 @@ namespace AgendaConsultorioMedico.Data
 
         [Required]
         [DataType(DataType.Date)]
-        public DateTime DataDeNascimento { get; set; }
+        public DateTimeOffset DataDeNascimento { get; set; }
 
         public virtual ICollection<Appointment> Appointments { get; set; }
     }

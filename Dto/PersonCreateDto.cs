@@ -11,6 +11,6 @@ namespace AgendaConsultorioMedico.Dto
 
         [Required]
         [DataType(DataType.Date)]
-        public DateTime DataDeNascimento { get; set; }
+        public DateTimeOffset DataDeNascimento { get; set; }
     }
 }
