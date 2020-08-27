@@ -4,7 +4,7 @@
 
 **2**. utiliza o comando dotnet ef database update
 
-**3**. caso o comando acima dê erro 'A network-related or instance-specific error occurred while establishing a connection to SQL Server'  (Error Number:10061,State:0,Class:20)
+**3**. caso o comando acima dê erro **'A network-related or instance-specific error occurred while establishing a connection to SQL Server'  (Error Number:10061,State:0,Class:20)**
 habilite as conexões TCP/IP ao banco, seguindo os passos adiante:
 
 	3.1 Abra o programa SQL SERVER (versão) Configuration Manager
