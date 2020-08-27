@@ -45,18 +45,18 @@ namespace AgendaConsultorioMedico.Data.Annotations
 
             var propertyTestedValue = otherPropertyInfo.GetValue(validationContext.ObjectInstance, null);
 
-            if (value == null || !(value is DateTime))
+            if (value == null || !(value is DateTimeOffset))
             {
                 return ValidationResult.Success;
             }
 
-            if (propertyTestedValue == null || !(propertyTestedValue is DateTime))
+            if (propertyTestedValue == null || !(propertyTestedValue is DateTimeOffset))
             {
                 return ValidationResult.Success;
             }
 
-            DateTime dateValue = (DateTime) value;
-            DateTime otherDate = (DateTime) (propertyTestedValue);
+            DateTimeOffset dateValue = DateTimeOffset.Parse(value.ToString());
+            DateTimeOffset otherDate = DateTimeOffset.Parse(propertyTestedValue.ToString());
 
             if (dateValue > otherDate)
             {
